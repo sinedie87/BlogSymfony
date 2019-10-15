@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un commentaire{% endblock %}
+
+{% block body %}
+
+    <h1>Créer un commentaire</h1>
+
+    {{ form_start(formComment) }}
+
+    {# {{ form(formComment) }} #}
+
+    {# {{ form_errors(formComment) }} #}
+    {{ form_row(formComment.author, { 'attr' : {'placeholder' : "Nom de l'auteur"}}) }}
+    {{ form_row(formComment.content, { 'attr' : {'placeholder' : "Contenu du commentaire"}}) }}
+    {{ form_row(formComment.createdAt) }}
+
+
+    <button type="submit" class="btn btn-success">Publier le commentaire</button>
+
+    {{ form_end(formComment) }}
+
+    
+
+{% endblock %}

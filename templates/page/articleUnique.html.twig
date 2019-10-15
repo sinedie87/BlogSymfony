@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles{% endblock %}
+
+{% block body %}
+
+<a href="{{ path('articles') }}">Retour</a>
+
+    <h1>Articles</h1>
+        
+        <article>
+            <h2>{{ article.title }}</h2>
+            <div class="metadata">Ecrit le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('H/i') }} dans la catégorie {{ article.category.title}}</div>
+            <div class="content">
+                <img src="{{ article.image }}" alt="">
+                {{ article.content | raw }}
+
+            </div>
+        </article>
+
+<a href="{{ path('editArticle', {'id' : article.id}) }}">Editer l'article</a>
+<a href="{{ path('deleteArticle', {'id' : article.id}) }}">Supprimer l'article</a>
+<a href="{{ path('createComment', {'id' : article.id}) }}">Ecrire un commentaire</a>
+
+    <h2>Commentaires</h2>
+
+        {% for comment in article.comments %}
+            <section>
+                <div class="col-3"> {{ comment.author }} à {{ comment.createdAt | date('d/m/Y à H:i') }}</div>
+                <div class="col-9"> {{ comment.content | raw }}</div>
+            </section>
+
+        {% endfor %}
+
+{% endblock %}
